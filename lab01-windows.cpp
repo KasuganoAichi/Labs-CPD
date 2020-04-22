@@ -61,11 +61,29 @@ void binary_insertion_sort(int C[], int tam, int print_ok) {
 	printf("\nInsertion Sort Binary Search of %d elements: #changes = %ld - time = %10.4Lf ms", tam, changes, interval*1000);
 }
 
-void shell_insertion_sort(int C[], int tam, int print_ok) {
+void shell_insertion_sort(int C[], int tam, int print_ok) 
+{
 
+	int h, k;
+	
+	k = 1;
+	while (h > 1)
+	{
+		h = tam / pow(2,k);
+		f = 0
+		for (j=1; j<h; j++)
+		{
+			insertion_sort(C, tam, print_ok, h, f);
+			f++;
+			
+		}
+		k++;
+	
+	}
+	
 }
 
-void insertion_sort(int C[], int tam, int print_ok) {
+void insertion_sort(int C[], int tam, int print_ok, int h, int f) {
 	long changes = 0;
 	int i, j, chave;
     LARGE_INTEGER frequency;
@@ -80,7 +98,7 @@ void insertion_sort(int C[], int tam, int print_ok) {
 		printf("\nArray before:");
 		print_array(C, tam);
 	}
-	for (j=1; j<tam; j++) {
+	for (j=f+h; j<tam; j = j + h) {
 		chave = C[j];
 		i = j-1;
 		while ((i>=0) && C[i]>chave) {
